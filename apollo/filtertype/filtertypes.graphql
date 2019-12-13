@@ -1,0 +1,5 @@
+query FilterTypes{
+  filtertypes{
+    Type
+  }
+}

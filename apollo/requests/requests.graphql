@@ -1,0 +1,19 @@
+query Requests{
+  requests{
+    id
+    filtersize{
+      Size
+    }
+filtertype {
+  Type
+}
+    controllertype{
+      controllerType
+    }
+    earlydue
+    finaldue
+    Description
+    Email
+    Status
+  }
+}

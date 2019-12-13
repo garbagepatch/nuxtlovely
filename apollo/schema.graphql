@@ -1,0 +1,454 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+union Morph = Controllertype | Filtersize | Filtertype | Requests | UploadFile | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | createControllertypePayload | createFiltersizePayload | createFiltertypePayload | createRequestsPayload | createRolePayload | createUserPayload | deleteControllertypePayload | deleteFiltersizePayload | deleteFiltertypePayload | deleteRequestsPayload | deleteRolePayload | deleteUserPayload | updateControllertypePayload | updateFiltersizePayload | updateFiltertypePayload | updateRequestsPayload | updateRolePayload | updateUserPayload
+
+type Controllertype {
+  controllerType: String!
+  created_at: DateTime!
+  id: ID!
+  updated_at: DateTime!
+}
+
+type Filtersize {
+  Size: String!
+  created_at: DateTime!
+  id: ID!
+  updated_at: DateTime!
+}
+
+type Filtertype {
+  Type: String!
+  created_at: DateTime!
+  id: ID!
+  updated_at: DateTime!
+}
+
+type Mutation {
+  createControllertype(input: createControllertypeInput): createControllertypePayload
+  createFiltersize(input: createFiltersizeInput): createFiltersizePayload
+  createFiltertype(input: createFiltertypeInput): createFiltertypePayload
+  createRequests(input: createRequestsInput): createRequestsPayload
+  "Create a new role"
+  createRole(input: createRoleInput): createRolePayload
+  "Create a new user"
+  createUser(input: createUserInput): createUserPayload
+  deleteControllertype(input: deleteControllertypeInput): deleteControllertypePayload
+  deleteFiltersize(input: deleteFiltersizeInput): deleteFiltersizePayload
+  deleteFiltertype(input: deleteFiltertypeInput): deleteFiltertypePayload
+  deleteRequests(input: deleteRequestsInput): deleteRequestsPayload
+  "Delete an existing role"
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+  "Delete an existing user"
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  multipleUpload(field: String, files: [Upload]!, ref: String, refId: ID, source: String): [UploadFile]!
+  register(input: UserInput!): UsersPermissionsLoginPayload!
+  updateControllertype(input: updateControllertypeInput): updateControllertypePayload
+  updateFiltersize(input: updateFiltersizeInput): updateFiltersizePayload
+  updateFiltertype(input: updateFiltertypeInput): updateFiltertypePayload
+  updateRequests(input: updateRequestsInput): updateRequestsPayload
+  "Update an existing role"
+  updateRole(input: updateRoleInput): updateRolePayload
+  "Update an existing user"
+  updateUser(input: updateUserInput): updateUserPayload
+  upload(field: String, file: Upload!, ref: String, refId: ID, source: String): UploadFile!
+}
+
+type Query {
+  controllertype(id: ID!): Controllertype
+  controllertypes(limit: Int, sort: String, start: Int, where: JSON): [Controllertype]
+  files(limit: Int, sort: String, start: Int, where: JSON): [UploadFile]
+  filtersize(id: ID!): Filtersize
+  filtersizes(limit: Int, sort: String, start: Int, where: JSON): [Filtersize]
+  filtertype(id: ID!): Filtertype
+  filtertypes(limit: Int, sort: String, start: Int, where: JSON): [Filtertype]
+  me: UsersPermissionsMe
+  request(id: ID!): Requests
+  requests(limit: Int, sort: String, start: Int, where: JSON): [Requests]
+  role(id: ID!): UsersPermissionsRole
+  "Retrieve all the existing roles. You can't apply filters on this query."
+  roles(limit: Int, sort: String, start: Int, where: JSON): [UsersPermissionsRole]
+  user(id: ID!): UsersPermissionsUser
+  users(limit: Int, sort: String, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type Requests {
+  Description: String
+  Email: String
+  Status: ENUM_REQUESTS_STATUS!
+  controllertype: Controllertype
+  created_at: DateTime!
+  earlydue: DateTime!
+  filtersize: Filtersize
+  filtertype: Filtertype
+  finaldue: DateTime!
+  id: ID!
+  updated_at: DateTime!
+}
+
+type UploadFile {
+  created_at: DateTime!
+  ext: String
+  hash: String!
+  id: ID!
+  mime: String!
+  name: String!
+  provider: String!
+  provider_metadata: JSON
+  related(limit: Int, sort: String, start: Int, where: JSON): [Morph]
+  sha256: String
+  size: String!
+  updated_at: DateTime!
+  url: String!
+}
+
+type UsersPermissionsLoginPayload {
+  jwt: String!
+  user: UsersPermissionsUser!
+}
+
+type UsersPermissionsMe {
+  blocked: Boolean
+  confirmed: Boolean
+  email: String!
+  id: ID!
+  role: UsersPermissionsMeRole
+  username: String!
+}
+
+type UsersPermissionsMeRole {
+  description: String
+  id: ID!
+  name: String!
+  type: String
+}
+
+type UsersPermissionsPermission {
+  action: String!
+  controller: String!
+  enabled: Boolean!
+  id: ID!
+  policy: String
+  role: UsersPermissionsRole
+  type: String!
+}
+
+type UsersPermissionsRole {
+  description: String
+  id: ID!
+  name: String!
+  permissions(limit: Int, sort: String, start: Int, where: JSON): [UsersPermissionsPermission]
+  type: String
+  users(limit: Int, sort: String, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsUser {
+  blocked: Boolean
+  confirmed: Boolean
+  created_at: DateTime!
+  email: String!
+  id: ID!
+  provider: String
+  role: UsersPermissionsRole
+  updated_at: DateTime!
+  username: String!
+}
+
+type createControllertypePayload {
+  controllertype: Controllertype
+}
+
+type createFiltersizePayload {
+  filtersize: Filtersize
+}
+
+type createFiltertypePayload {
+  filtertype: Filtertype
+}
+
+type createRequestsPayload {
+  request: Requests
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+type deleteControllertypePayload {
+  controllertype: Controllertype
+}
+
+type deleteFiltersizePayload {
+  filtersize: Filtersize
+}
+
+type deleteFiltertypePayload {
+  filtertype: Filtertype
+}
+
+type deleteRequestsPayload {
+  request: Requests
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+type updateControllertypePayload {
+  controllertype: Controllertype
+}
+
+type updateFiltersizePayload {
+  filtersize: Filtersize
+}
+
+type updateFiltertypePayload {
+  filtertype: Filtertype
+}
+
+type updateRequestsPayload {
+  request: Requests
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+enum CacheControlScope {
+  PRIVATE
+  PUBLIC
+}
+
+enum ENUM_REQUESTS_STATUS {
+  Completed
+  Deleted
+  Opened
+  Submitted
+}
+
+input ControllertypeInput {
+  controllerType: String!
+}
+
+input FileInput {
+  ext: String
+  hash: String!
+  mime: String!
+  name: String!
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+  sha256: String
+  size: String!
+  url: String!
+}
+
+input FiltersizeInput {
+  Size: String!
+}
+
+input FiltertypeInput {
+  Type: String!
+}
+
+input InputID {
+  id: ID!
+}
+
+input RequestsInput {
+  Description: String
+  Email: String
+  Status: ENUM_REQUESTS_STATUS!
+  controllertype: ID
+  earlydue: DateTime!
+  filtersize: ID
+  filtertype: ID
+  finaldue: DateTime!
+}
+
+input RoleInput {
+  description: String
+  name: String!
+  permissions: [ID]
+  type: String
+  users: [ID]
+}
+
+input UserInput {
+  blocked: Boolean
+  confirmed: Boolean
+  email: String!
+  password: String
+  provider: String
+  resetPasswordToken: String
+  role: ID
+  username: String!
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String = "local"
+}
+
+input createControllertypeInput {
+  data: ControllertypeInput
+}
+
+input createFiltersizeInput {
+  data: FiltersizeInput
+}
+
+input createFiltertypeInput {
+  data: FiltertypeInput
+}
+
+input createRequestsInput {
+  data: RequestsInput
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+input deleteControllertypeInput {
+  where: InputID
+}
+
+input deleteFiltersizeInput {
+  where: InputID
+}
+
+input deleteFiltertypeInput {
+  where: InputID
+}
+
+input deleteRequestsInput {
+  where: InputID
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+input editControllertypeInput {
+  controllerType: String
+}
+
+input editFileInput {
+  ext: String
+  hash: String
+  mime: String
+  name: String
+  provider: String
+  provider_metadata: JSON
+  related: [ID]
+  sha256: String
+  size: String
+  url: String
+}
+
+input editFiltersizeInput {
+  Size: String
+}
+
+input editFiltertypeInput {
+  Type: String
+}
+
+input editRequestsInput {
+  Description: String
+  Email: String
+  Status: ENUM_REQUESTS_STATUS
+  controllertype: ID
+  earlydue: DateTime
+  filtersize: ID
+  filtertype: ID
+  finaldue: DateTime
+}
+
+input editRoleInput {
+  description: String
+  name: String
+  permissions: [ID]
+  type: String
+  users: [ID]
+}
+
+input editUserInput {
+  blocked: Boolean
+  confirmed: Boolean
+  email: String
+  password: String
+  provider: String
+  resetPasswordToken: String
+  role: ID
+  username: String
+}
+
+input updateControllertypeInput {
+  data: editControllertypeInput
+  where: InputID
+}
+
+input updateFiltersizeInput {
+  data: editFiltersizeInput
+  where: InputID
+}
+
+input updateFiltertypeInput {
+  data: editFiltertypeInput
+  where: InputID
+}
+
+input updateRequestsInput {
+  data: editRequestsInput
+  where: InputID
+}
+
+input updateRoleInput {
+  data: editRoleInput
+  where: InputID
+}
+
+input updateUserInput {
+  data: editUserInput
+  where: InputID
+}
+
+
+"The `DateTime` scalar represents a date and time following the ISO 8601 standard"
+scalar DateTime
+
+scalar JSON
+
+"The `Upload` scalar type represents a file upload."
+scalar Upload
+
+"The `Long` scalar type represents 52-bit integers"
+scalar Long
